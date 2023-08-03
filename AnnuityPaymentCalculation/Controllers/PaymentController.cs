@@ -4,16 +4,21 @@ using System.Diagnostics;
 
 namespace AnnuityPaymentCalculation.Controllers
 {
-    public class HomeController : Controller
+    public class PaymentController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<PaymentController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public PaymentController(ILogger<PaymentController> logger)
         {
             _logger = logger;
         }
 
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult CreditData()
         {
             return View();
         }
