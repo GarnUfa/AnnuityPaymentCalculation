@@ -1,4 +1,5 @@
-﻿using DAL.Interfaces;
+﻿using System.ComponentModel.DataAnnotations;
+using DAL.Interfaces;
 
 namespace DAL.Model;
 
