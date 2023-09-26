@@ -1,8 +1,7 @@
 ﻿using AnnuityPaymentCalculation.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using DAL.Interfaces;
-using DAL.Model;
+using AnnuityPaymentCalculation.Models.AnnuityPaymentModel;
 
 namespace AnnuityPaymentCalculation.Controllers
 {
@@ -25,16 +24,15 @@ namespace AnnuityPaymentCalculation.Controllers
         {
             return View();
         }
-        [HttpPost]
-        public IActionResult CreditData(PaymentCalculate basePaymentCalculate)
-        {
-            var dsd = ModelState.IsValid;
-            return View(basePaymentCalculate);
-        }
 
-        public IActionResult Test()
+        [HttpPost]
+        public IActionResult CreditData(AnnuityPaymentInputData basePaymentCalculate)
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                throw new InvalidOperationException();
+            }
+            return View(basePaymentCalculate);
         }
 
         public IActionResult Privacy()

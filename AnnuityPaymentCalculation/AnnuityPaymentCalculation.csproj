@@ -7,11 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DTO\" />
+    <Folder Include="Models\AnnuityPaymentModel\Interfaces\" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DAL\AnnuityPayment.DAL.csproj" />
     <ProjectReference Include="..\PaymentMath\PaymentMath.csproj" />
   </ItemGroup>
 
