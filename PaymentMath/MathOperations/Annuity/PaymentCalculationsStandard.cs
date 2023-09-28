@@ -88,6 +88,9 @@ public class PaymentCalculationsStandard : PaymentCalculationsBase, IAnnuityPaym
         PercentageOfPayment = _loanAmount * _percentRate.PercentNumerical().ByMonth();
     }
 
+    /// <summary>
+    /// Сумма долга после платежа
+    /// </summary>
     protected virtual void GetDebtAmountAfterPayment()
     {
         DebtAmountAfterPayment = _loanAmount - MainPartOfPayment;
