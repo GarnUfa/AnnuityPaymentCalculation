@@ -14,6 +14,7 @@ public class GetAnnuityResult : IGetResultApplicationService<IAnnuityPaymentOutp
         var numberOfPayments = input.LoanTerm / input.PaymentStep;
 
         var lastPay = new AnnuityPaymentOutputData();
+
         if (input.PayType == AnnuityPayType.Standard)
         {
             for (var i = 1; i <= numberOfPayments; i++)
@@ -66,6 +67,13 @@ public class GetAnnuityResult : IGetResultApplicationService<IAnnuityPaymentOutp
         };
     }
 
+    /// <summary>
+    /// Подсчет платежа с шагом в равным primaryInputData.PaymentStep, со ставкой в день
+    /// </summary>
+    /// <param name="paymentNumber">Номер платежа</param>
+    /// <param name="primaryInputData">Основные входные данные для подсчета платежа</param>
+    /// <param name="lastPayOutputData">Данные о прошлом платеже</param>
+    /// <returns></returns>
     private IAnnuityPaymentOutputData CalculateAdvancedPay(int paymentNumber, IAnnuityPaymentInputData primaryInputData, IAnnuityPaymentOutputData lastPayOutputData)
     {
         var calculate = new PaymentCalculationsAdvanced(
