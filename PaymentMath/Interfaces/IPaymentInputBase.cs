@@ -3,9 +3,9 @@
 public interface IPaymentInputBase
 {
     /// <summary>
-    /// Сумма займа
+    /// Общая сумма займа
     /// </summary>
-    public int LoanAmount { get; set; }
+    public decimal LoanAmount { get; set; }
 
     /// <summary>
     /// Срок займа

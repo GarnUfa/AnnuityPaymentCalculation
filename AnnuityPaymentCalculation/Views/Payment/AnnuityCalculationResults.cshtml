@@ -1,0 +1,56 @@
+﻿@model IEnumerable<AnnuityPaymentCalculation.Models.AnnuityPaymentModel.Interfaces.IAnnuityPaymentOutputData>
+
+@{
+    ViewData["Title"] = "Результат расчетов";
+}
+
+<h1>Результат расчетов</h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">
+            @Html.DisplayNameFor(model => model.PaymentNumber)
+        </th>
+        <th scope="col">
+            @Html.DisplayNameFor(model => model.PaymentDate)
+        </th>
+        <th scope="col">
+            @Html.DisplayNameFor(model => model.PaymentAmount)
+        </th>
+        <th scope="col">
+            @Html.DisplayNameFor(model => model.MainPartOfPayment)
+        </th>
+        <th scope="col">
+            @Html.DisplayNameFor(model => model.PercentageOfPayment)
+        </th>
+        <th scope="col">
+            @Html.DisplayNameFor(model => model.DebtBalance)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <th scope="row">
+                    @Html.DisplayFor(modelItem => item.PaymentNumber)
+            </th>
+            <td>
+                    @Html.DisplayFor(modelItem => item.PaymentDate)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.PaymentAmount)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.MainPartOfPayment)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.PercentageOfPayment)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.DebtBalance)
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

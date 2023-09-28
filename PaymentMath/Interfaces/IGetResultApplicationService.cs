@@ -1,6 +1,6 @@
 ﻿namespace PaymentMath.Interfaces;
 
-internal interface IGetResultApplicationService
+public interface IGetResultApplicationService<out T> where T :  IPaymentOutputBase
 {
-    public IPaymentOutputBase GetCalculationResult(IPaymentInputBase inputData);
+    public IEnumerable<T> GetCalculationResult(IPaymentInputBase inputData);
 }

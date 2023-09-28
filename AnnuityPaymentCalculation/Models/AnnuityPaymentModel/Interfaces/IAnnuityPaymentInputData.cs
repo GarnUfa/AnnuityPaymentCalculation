@@ -8,6 +8,12 @@ public interface IAnnuityPaymentInputData : IPaymentInputBase
     /// Номер платежа
     /// </summary>
     public int PaymentNumber { get; set; }
+
+    /// <summary>
+    /// Дата платежа
+    /// </summary>
+    public DateTime PaymentDate { get; set; }
+
     /// <summary>
     /// Шаг платежа
     /// </summary>

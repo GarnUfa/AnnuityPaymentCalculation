@@ -4,42 +4,32 @@ namespace PaymentMath.MathOperations.Annuity;
 
 public class PaymentCalculationsStandard : PaymentCalculationsBase, IAnnuityPaymentCalculations
 {
+    protected readonly decimal _initialLoanAmount;
     protected readonly decimal _loanAmount;
     protected int _quantityPayments;
     protected decimal _percentRate;
     protected readonly DateTime _lastPaymentDate;
     protected int _paymentStep = 1;
-
-    /// <summary>
-    /// Дата платежа
-    /// </summary>
+    
     public DateTime PaymentDate { get; set; }
-
-    /// <summary>
-    /// Размер ежемесячного платежа
-    /// </summary>
     public decimal PaymentAmount { get; set; }
-
-    /// <summary>
-    /// Размер основной части долга
-    /// </summary>
-    public decimal BalanceMainDebt { get; set; }
-
-    /// <summary>
-    /// Размер процентной части долга
-    /// </summary>
-    public decimal PaymentAmountByPercent { get; set; }
+    public decimal MainPartOfPayment { get; set; }
+    public decimal PercentageOfPayment { get; set; }
+    public decimal DebtAmountAfterPayment { get; set; }
 
     /// <summary>
     /// Калькулятор платежа
     /// </summary>
-    /// <param name="loanAmount">Сумма долга на момент платежа</param>
+    /// <param name="initialLoanAmount">Первоначальная сумма кредита</param>
     /// <param name="quantityPayments">Срок займа \ Количество платежей</param>
     /// <param name="percentRate">Процентная ставка</param>
     /// <param name="lastPaymentDate">Дата последнего платежа</param>
-    public PaymentCalculationsStandard(decimal loanAmount, int quantityPayments, decimal percentRate, DateTime lastPaymentDate)
+    /// <param name="loanAmount">Сумма долга на момент платежа</param>
+    public PaymentCalculationsStandard(decimal initialLoanAmount, int quantityPayments, int percentRate,
+        DateTime lastPaymentDate, decimal loanAmount = 0)
     {
-        _loanAmount = loanAmount;
+        _initialLoanAmount = initialLoanAmount;
+        _loanAmount = loanAmount <= 0 ? initialLoanAmount : loanAmount;
         _quantityPayments = quantityPayments;
         _percentRate = percentRate;
         _lastPaymentDate = lastPaymentDate;
@@ -47,7 +37,7 @@ public class PaymentCalculationsStandard : PaymentCalculationsBase, IAnnuityPaym
 
     protected override void CheckingValidityInputData()
     {
-        if (_loanAmount <= 0 || _quantityPayments <= 0 || _percentRate <= 0)
+        if (_quantityPayments <= 0 || _percentRate <= 0 || _initialLoanAmount <= 0)
         {
             throw new ArgumentException($"Входящие данные не могут быть меньше или равны нулю");
         }
@@ -60,6 +50,7 @@ public class PaymentCalculationsStandard : PaymentCalculationsBase, IAnnuityPaym
         GetPaymentAmount();
         GetPaymentAmountByPercent();
         GetBalanceMainDebt();
+        GetDebtAmountAfterPayment();
     }
 
     /// <summary>
@@ -78,7 +69,7 @@ public class PaymentCalculationsStandard : PaymentCalculationsBase, IAnnuityPaym
         var percentPerMonthByNumerical = _percentRate.PercentNumerical().ByMonth();
         var divider = (decimal)(Math.Pow(1 + (double)percentPerMonthByNumerical, _quantityPayments)) - 1;
 
-        PaymentAmount = _loanAmount * (percentPerMonthByNumerical + (percentPerMonthByNumerical / divider));
+        PaymentAmount = _initialLoanAmount * (percentPerMonthByNumerical + (percentPerMonthByNumerical / divider));
     }
 
     /// <summary>
@@ -86,7 +77,7 @@ public class PaymentCalculationsStandard : PaymentCalculationsBase, IAnnuityPaym
     /// </summary>
     protected virtual void GetBalanceMainDebt()
     {
-        BalanceMainDebt = PaymentAmount - PaymentAmountByPercent;
+        MainPartOfPayment = PaymentAmount - PercentageOfPayment;
     }
 
     /// <summary>
@@ -94,6 +85,11 @@ public class PaymentCalculationsStandard : PaymentCalculationsBase, IAnnuityPaym
     /// </summary>
     protected virtual void GetPaymentAmountByPercent()
     {
-        PaymentAmountByPercent = _loanAmount * _percentRate.PercentNumerical().ByMonth();
+        PercentageOfPayment = _loanAmount * _percentRate.PercentNumerical().ByMonth();
+    }
+
+    protected virtual void GetDebtAmountAfterPayment()
+    {
+        DebtAmountAfterPayment = _loanAmount - MainPartOfPayment;
     }
 }

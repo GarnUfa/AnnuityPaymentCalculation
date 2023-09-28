@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Folder Include="Models\AnnuityPaymentModel\Interfaces\" />
+    <Folder Include="Services\PaymentsCalculations\AnnuityPayment\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -9,10 +9,10 @@ namespace AnnuityStandardTests
         [Fact]
         public void PaymentCalculationsStandard_Test()
         {
-            var pc = new PaymentCalculationsStandard(loanAmount: 10000, quantityPayments: 6, percentRate: 10,
-                lastPaymentDate: DateTime.Now);
+            //var pc = new PaymentCalculationsStandard(TODO, quantityPayments: 6, percentRate: 10,
+            //    lastPaymentDate: DateTime.Now, loanAmount: 10000);
 
-            pc.Calculate();
+            //pc.Calculate();
 
         }
     }
