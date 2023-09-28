@@ -10,7 +10,7 @@ public class AnnuityPaymentInputData : IAnnuityPaymentInputData
     [Range(10000, 10000000, ErrorMessage = "Введите сумму от 10000 до 10000000")]
     public decimal LoanAmount { get; set; }
 
-    [Display(Name = "Срок кредитования в месяцах")]
+    [Display(Name = "Срок кредитования")]
     [Required(ErrorMessage = "Введите срок кредитования")]
     [Range(6, 600, ErrorMessage = "Введите срок кредитования от 6 до 600")]
     public int LoanTerm { get; set; }
@@ -21,5 +21,6 @@ public class AnnuityPaymentInputData : IAnnuityPaymentInputData
     public int Rate { get; set; }
     public int PaymentNumber { get; set; }
     public DateTime PaymentDate { get; set; } = DateTime.Now;
-    public int PaymentStep { get; set; }
+    public int PaymentStep { get; set; } = 1;
+    public AnnuityPayType PayType { get; set; }
 }

@@ -11,16 +11,25 @@ public class GetAnnuityResult : IGetResultApplicationService<IAnnuityPaymentOutp
     {
         var input = (AnnuityPaymentInputData)inputData;
         var result = new List<IAnnuityPaymentOutputData>();
+        var numberOfPayments = input.LoanTerm / input.PaymentStep;
 
-        if (input.PaymentStep == 0)
+        var lastPay = new AnnuityPaymentOutputData();
+        if (input.PayType == AnnuityPayType.Standard)
         {
-            var lastPay = new AnnuityPaymentOutputData();
-
-            for (var i = 1; i <= inputData.LoanTerm; i++)
+            for (var i = 1; i <= numberOfPayments; i++)
             {
-                var p = CalculateStandardPay(i, input, lastPay);
-                result.Add(p);
-                lastPay = (AnnuityPaymentOutputData)p;
+                var outputData = CalculateStandardPay(i, input, lastPay);
+                result.Add(outputData);
+                lastPay = (AnnuityPaymentOutputData)outputData;
+            }
+        }
+        else
+        {
+            for (var i = 1; i <= numberOfPayments; i++)
+            {
+                var outputData = CalculateAdvancedPay(i, input, lastPay);
+                result.Add(outputData);
+                lastPay = (AnnuityPaymentOutputData)outputData;
             }
         }
 
@@ -54,6 +63,30 @@ public class GetAnnuityResult : IGetResultApplicationService<IAnnuityPaymentOutp
             DebtBalance =           calculate.DebtAmountAfterPayment,
             MainPartOfPayment =     calculate.MainPartOfPayment,
             PercentageOfPayment =   calculate.PercentageOfPayment,
+        };
+    }
+
+    private IAnnuityPaymentOutputData CalculateAdvancedPay(int paymentNumber, IAnnuityPaymentInputData primaryInputData, IAnnuityPaymentOutputData lastPayOutputData)
+    {
+        var calculate = new PaymentCalculationsAdvanced(
+            initialLoanAmount: primaryInputData.LoanAmount,
+            quantityPayments: primaryInputData.LoanTerm,
+            percentRate: primaryInputData.Rate,
+            lastPaymentDate: primaryInputData.PaymentDate,
+            loanAmount: lastPayOutputData.DebtBalance,
+            paymentStep: primaryInputData.PaymentStep
+        );
+
+        calculate.Calculate();
+
+        return new AnnuityPaymentOutputData()
+        {
+            PaymentNumber = paymentNumber,
+            PaymentDate = calculate.PaymentDate,
+            PaymentAmount = calculate.PaymentAmount,
+            DebtBalance = calculate.DebtAmountAfterPayment,
+            MainPartOfPayment = calculate.MainPartOfPayment,
+            PercentageOfPayment = calculate.PercentageOfPayment,
         };
     }
 }

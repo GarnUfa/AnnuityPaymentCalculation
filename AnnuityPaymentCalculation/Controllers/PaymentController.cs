@@ -34,14 +34,35 @@ namespace AnnuityPaymentCalculation.Controllers
         {
             if (ModelState.IsValid)
             {
-                var res  = _getResult.GetCalculationResult(basePaymentCalculate);
-                return View("AnnuityCalculationResults", res);
+                basePaymentCalculate.PayType = AnnuityPayType.Standard;
+                var result  = _getResult.GetCalculationResult(basePaymentCalculate);
+                return View("AnnuityCalculationResults", result);
             }
             else
             {
                 return View(basePaymentCalculate);
             }
             
+        }
+
+        public IActionResult AdvancedCreditData()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AdvancedCreditData(AnnuityPaymentInputData advancedPaymentCalculate)
+        {
+            if (ModelState.IsValid)
+            {
+                advancedPaymentCalculate.PayType = AnnuityPayType.Advanced;
+                var result = _getResult.GetCalculationResult(advancedPaymentCalculate);
+                return View("AnnuityCalculationResults", result);
+            }
+            else
+            {
+                return View(advancedPaymentCalculate);
+            }
         }
 
         public IActionResult AnnuityCalculationResults(IEnumerable<IAnnuityPaymentOutputData> PaymentTable)

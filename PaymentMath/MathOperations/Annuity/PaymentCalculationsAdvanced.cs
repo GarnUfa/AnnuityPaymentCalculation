@@ -5,7 +5,7 @@ public class PaymentCalculationsAdvanced : PaymentCalculationsStandard
 
     private readonly decimal _totalPercentage;
 
-    public PaymentCalculationsAdvanced(int initialLoanAmount, decimal loanAmount, int quantityPayments, int percentRate, DateTime lastPaymentDate, int paymentStep) : base(initialLoanAmount, quantityPayments, percentRate, lastPaymentDate, loanAmount)
+    public PaymentCalculationsAdvanced(decimal initialLoanAmount, decimal loanAmount, int quantityPayments, int percentRate, DateTime lastPaymentDate, int paymentStep) : base(initialLoanAmount, quantityPayments, percentRate, lastPaymentDate, loanAmount)
     {
         _paymentStep = paymentStep;
 
@@ -29,11 +29,16 @@ public class PaymentCalculationsAdvanced : PaymentCalculationsStandard
 
     protected override void GetPaymentAmount()
     {
-        var percentPerDayByNumerical = _totalPercentage.PercentNumerical() / _quantityPayments;
+        var percentPerDayByNumerical = _percentRate.PercentNumerical() / _quantityPayments;
 
         var divider = (decimal)(Math.Pow(1 + (double)percentPerDayByNumerical, _quantityPayments)) - 1;
 
         PaymentAmount = _initialLoanAmount * (percentPerDayByNumerical + (percentPerDayByNumerical / divider));
+    }
+
+    protected override void GetPaymentAmountByPercent()
+    {
+        PercentageOfPayment = _loanAmount * _percentRate.PercentNumerical() / _quantityPayments; 
     }
 
 }
