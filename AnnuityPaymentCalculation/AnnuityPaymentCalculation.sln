@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnnuityPaymentCalculation",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentMath", "..\PaymentMath\PaymentMath.csproj", "{5A0F35DF-195B-4762-8A12-049B9C604764}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnnuityStandardTests", "..\AnnuityStandardTests\AnnuityStandardTests.csproj", "{DD8AF76E-3D4F-4A1D-B237-78C7C4D2C759}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{5A0F35DF-195B-4762-8A12-049B9C604764}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A0F35DF-195B-4762-8A12-049B9C604764}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A0F35DF-195B-4762-8A12-049B9C604764}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DD8AF76E-3D4F-4A1D-B237-78C7C4D2C759}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DD8AF76E-3D4F-4A1D-B237-78C7C4D2C759}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DD8AF76E-3D4F-4A1D-B237-78C7C4D2C759}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DD8AF76E-3D4F-4A1D-B237-78C7C4D2C759}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
