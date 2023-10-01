@@ -1,7 +1,5 @@
-﻿<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-@model AnnuityPaymentCalculation.Models.AnnuityPaymentModel.AnnuityPaymentInputData
+﻿@model AnnuityPaymentCalculation.Models.AnnuityPaymentModel.AnnuityPaymentInputData
 
-<div class="container">
     <form class="well form-horizontal needs-validation" asp-controller="Payment" asp-action="AdvancedCreditData" method="post" novalidate>
         <div class="form-group">
             <label class="col-md-4 control-label">Сумма займа</label>
@@ -10,7 +8,7 @@
                     <span class="input-group-addon">
                         <i class="glyphicon glyphicon-user"></i>
                     </span>
-                    <input name="LoanAmount" class="form-control" value="" type="text" asp-for="LoanAmount" placeholder="от 10000 до 10000000" value="" required>
+                    <input name="LoanAmount" class="form-control" value="" type="text" asp-for="LoanAmount" placeholder="от 1000 до 10000000" value="" required>
                 </div>
                 <div><span asp-validation-for="LoanAmount" class="text-danger"></span></div>
             </div>
@@ -22,7 +20,7 @@
                     <span class="input-group-addon">
                         <i class="glyphicon glyphicon-user"></i>
                     </span>
-                    <input name="LoanTerm" class="form-control" value="" type="text" asp-for="LoanTerm" placeholder="от 6 до 600" value="" required>
+                    <input name="LoanTerm" class="form-control" value="" type="text" asp-for="LoanTerm" placeholder="от 1 до 600" value="" required>
                 </div>
                 <div><span asp-validation-for="LoanTerm" class="text-danger"></span></div>
             </div>
@@ -46,11 +44,10 @@
                     <span class="input-group-addon">
                         <i class="glyphicon glyphicon-user"></i>
                     </span>
-                    <input name="PaymentStep" class="form-control" value="" type="text" asp-for="PaymentStep" placeholder="от 1 до Срок кредитования в днях" value="" required>
+                    <input name="PaymentStep" class="form-control" value="" type="text" asp-for="PaymentStep" placeholder="от 1 до " value="" required>
                 </div>
                 <div><span asp-validation-for="PaymentStep" class="text-danger"></span></div>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-outline-primary btn-lg btn-block">Результат</button>
     </form>
-</div>

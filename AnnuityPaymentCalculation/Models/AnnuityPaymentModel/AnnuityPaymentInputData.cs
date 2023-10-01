@@ -8,12 +8,12 @@ public class AnnuityPaymentInputData : IAnnuityPaymentInputData
 {
     [Display(Name = "Сумма кредитования")]
     [Required(ErrorMessage = "Введите сумму кредитования")]
-    [Range(10000, 10000000, ErrorMessage = "Введите сумму от 10000 до 10000000")]
+    [Range(1000, 10000000, ErrorMessage = "Введите сумму от 1000 до 10000000")]
     public decimal LoanAmount { get; set; }
 
     [Display(Name = "Срок кредитования")]
     [Required(ErrorMessage = "Введите срок кредитования")]
-    [Range(6, 600, ErrorMessage = "Введите срок кредитования от 6 до 600")]
+    [Range(1, 600, ErrorMessage = "Введите срок кредитования от 1 до 600")]
     [RequiredIf($"{nameof(LoanTerm)}>={nameof(PaymentStep)}", "Шаг платежа не может быть больше количества платежей")]
     public int LoanTerm { get; set; }
 

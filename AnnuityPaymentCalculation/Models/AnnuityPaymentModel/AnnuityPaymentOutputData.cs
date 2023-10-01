@@ -1,5 +1,4 @@
 ﻿using AnnuityPaymentCalculation.Models.AnnuityPaymentModel.Interfaces;
-using System.ComponentModel.DataAnnotations;
 
 namespace AnnuityPaymentCalculation.Models.AnnuityPaymentModel;
 
