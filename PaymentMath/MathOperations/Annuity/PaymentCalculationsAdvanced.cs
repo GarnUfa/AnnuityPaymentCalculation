@@ -26,7 +26,8 @@ public class PaymentCalculationsAdvanced : PaymentCalculationsStandard
 
     protected override void GetPaymentDate()
     {
-        PaymentDate = _lastPaymentDate.AddDays(_paymentStep);
+        var resultDate = _lastPaymentDate == DateTime.MinValue ? DateTime.Now : _lastPaymentDate;
+        PaymentDate = resultDate.AddDays(_paymentStep);
     }
 
     protected override void GetPaymentAmount()

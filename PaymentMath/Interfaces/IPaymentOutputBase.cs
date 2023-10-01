@@ -16,6 +16,7 @@ public interface IPaymentOutputBase
     /// Дата платежа
     /// </summary>
     [Display(Name = "Дата платежа")]
+    [DisplayFormat(DataFormatString = "{0:D}")]
     public DateTime PaymentDate { get; set; }
 
 
