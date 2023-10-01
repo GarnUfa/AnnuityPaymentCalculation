@@ -50,7 +50,7 @@ public class GetAnnuityResult : IGetResultApplicationService<IAnnuityPaymentOutp
             initialLoanAmount:  primaryInputData.LoanAmount,
             quantityPayments:   primaryInputData.LoanTerm,
             percentRate:        primaryInputData.Rate,
-            lastPaymentDate:    primaryInputData.PaymentDate,
+            lastPaymentDate:    lastPayOutputData.PaymentDate,
             loanAmount:         lastPayOutputData.DebtBalance
         );
 

@@ -55,6 +55,7 @@ namespace AnnuityPaymentCalculation.Controllers
         {
             if (ModelState.IsValid)
             {
+                ViewBag.CreditTerm = advancedPaymentCalculate.LoanTerm;
                 advancedPaymentCalculate.PayType = AnnuityPayType.Advanced;
                 var result = _getResult.GetCalculationResult(advancedPaymentCalculate);
                 return View("AnnuityCalculationResults", result);

@@ -2,8 +2,10 @@
 
 public class PaymentCalculationsAdvanced : PaymentCalculationsStandard
 {
-
-    private readonly decimal _totalPercentage;
+    /// <summary>
+    /// Минимальное соотношения шага к сроку платежа
+    /// </summary>
+    private const int MinStepToDateRatio = 1;
 
     public PaymentCalculationsAdvanced(decimal initialLoanAmount, decimal loanAmount, int quantityPayments, int percentRate, DateTime lastPaymentDate, int paymentStep) : base(initialLoanAmount, quantityPayments, percentRate, lastPaymentDate, loanAmount)
     {
@@ -16,7 +18,7 @@ public class PaymentCalculationsAdvanced : PaymentCalculationsStandard
     protected override void CheckingValidityInputData()
     {
         base.CheckingValidityInputData();
-        if (_paymentStep > _quantityPayments)
+        if (_quantityPayments < MinStepToDateRatio)
         {
             throw new ArgumentException($"Шаг платежа не может быть больше срока займа");
         }

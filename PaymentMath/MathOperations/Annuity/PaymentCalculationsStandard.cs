@@ -58,7 +58,8 @@ public class PaymentCalculationsStandard : PaymentCalculationsBase, IAnnuityPaym
     /// </summary>
     protected virtual void GetPaymentDate()
     {
-        PaymentDate = _lastPaymentDate.AddMonths(_paymentStep);
+        var resultDate = _lastPaymentDate == DateTime.MinValue ? DateTime.Now : _lastPaymentDate;
+        PaymentDate = resultDate.AddMonths(_paymentStep);
     }
 
     /// <summary>
