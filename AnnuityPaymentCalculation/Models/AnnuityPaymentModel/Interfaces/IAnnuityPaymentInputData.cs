@@ -18,7 +18,7 @@ public interface IAnnuityPaymentInputData : IPaymentInputBase
     /// Шаг платежа
     /// </summary>
     public int PaymentStep { get; set; }
-    
+
     /// <summary>
     /// Тип платежа
     /// </summary>

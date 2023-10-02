@@ -1,7 +1,6 @@
 ﻿using AnnuityPaymentCalculation.Models.AnnuityPaymentModel.Interfaces;
-using System.ComponentModel.DataAnnotations;
 using AnnuityPaymentCalculation.Models.AnnuityPaymentModel.Validations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace AnnuityPaymentCalculation.Models.AnnuityPaymentModel;
 

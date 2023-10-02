@@ -1,8 +1,5 @@
-﻿using AnnuityPaymentCalculation.Models.AnnuityPaymentModel.Interfaces;
-using AnnuityPaymentCalculation.Services.PaymentsCalculations.AnnuityPayment;
-using Microsoft.AspNetCore.Localization;
+﻿using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Localization;
-using PaymentMath.Interfaces;
 using System.Globalization;
 
 namespace AnnuityPaymentCalculation.Services;

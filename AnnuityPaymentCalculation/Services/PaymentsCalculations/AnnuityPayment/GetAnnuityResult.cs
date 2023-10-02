@@ -47,23 +47,23 @@ public class GetAnnuityResult : IGetResultApplicationService<IAnnuityPaymentOutp
     private IAnnuityPaymentOutputData CalculateStandardPay(int paymentNumber, IAnnuityPaymentInputData primaryInputData, IAnnuityPaymentOutputData lastPayOutputData)
     {
         var calculate = new PaymentCalculationsStandard(
-            initialLoanAmount:  primaryInputData.LoanAmount,
-            quantityPayments:   primaryInputData.LoanTerm,
-            percentRate:        primaryInputData.Rate,
-            lastPaymentDate:    lastPayOutputData.PaymentDate,
-            loanAmount:         lastPayOutputData.DebtBalance
+            initialLoanAmount: primaryInputData.LoanAmount,
+            quantityPayments: primaryInputData.LoanTerm,
+            percentRate: primaryInputData.Rate,
+            lastPaymentDate: lastPayOutputData.PaymentDate,
+            loanAmount: lastPayOutputData.DebtBalance
         );
 
         calculate.Calculate();
 
         return new AnnuityPaymentOutputData()
         {
-            PaymentNumber =         paymentNumber,
-            PaymentDate =           calculate.PaymentDate,
-            PaymentAmount =         calculate.PaymentAmount,
-            DebtBalance =           calculate.DebtAmountAfterPayment,
-            MainPartOfPayment =     calculate.MainPartOfPayment,
-            PercentageOfPayment =   calculate.PercentageOfPayment,
+            PaymentNumber = paymentNumber,
+            PaymentDate = calculate.PaymentDate,
+            PaymentAmount = calculate.PaymentAmount,
+            DebtBalance = calculate.DebtAmountAfterPayment,
+            MainPartOfPayment = calculate.MainPartOfPayment,
+            PercentageOfPayment = calculate.PercentageOfPayment,
         };
     }
 

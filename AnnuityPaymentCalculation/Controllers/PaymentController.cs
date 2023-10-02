@@ -1,9 +1,7 @@
-﻿using AnnuityPaymentCalculation.Models;
-using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
-using AnnuityPaymentCalculation.Models.AnnuityPaymentModel;
-using PaymentMath.Interfaces;
+﻿using AnnuityPaymentCalculation.Models.AnnuityPaymentModel;
 using AnnuityPaymentCalculation.Models.AnnuityPaymentModel.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using PaymentMath.Interfaces;
 
 namespace AnnuityPaymentCalculation.Controllers
 {
@@ -29,14 +27,14 @@ namespace AnnuityPaymentCalculation.Controllers
             if (ModelState.IsValid)
             {
                 basePaymentCalculate.PayType = AnnuityPayType.Standard;
-                var result  = _getResult.GetCalculationResult(basePaymentCalculate);
+                var result = _getResult.GetCalculationResult(basePaymentCalculate);
                 return View("AnnuityCalculationResults", result);
             }
             else
             {
                 return View(basePaymentCalculate);
             }
-            
+
         }
 
         public IActionResult AdvancedCreditData()
