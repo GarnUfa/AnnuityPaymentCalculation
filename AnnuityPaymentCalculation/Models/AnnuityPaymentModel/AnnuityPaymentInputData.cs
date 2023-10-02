@@ -1,6 +1,7 @@
 ﻿using AnnuityPaymentCalculation.Models.AnnuityPaymentModel.Interfaces;
 using System.ComponentModel.DataAnnotations;
 using AnnuityPaymentCalculation.Models.AnnuityPaymentModel.Validations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AnnuityPaymentCalculation.Models.AnnuityPaymentModel;
 
@@ -8,7 +9,7 @@ public class AnnuityPaymentInputData : IAnnuityPaymentInputData
 {
     [Display(Name = "Сумма кредитования")]
     [Required(ErrorMessage = "Введите сумму кредитования")]
-    [Range(1000, 10000000, ErrorMessage = "Введите сумму от 1000 до 10000000")]
+    [Range(typeof(decimal), "1000,0", "10000000,0", ErrorMessage = "Введите сумму от 1000 до 10000000")]
     public decimal LoanAmount { get; set; }
 
     [Display(Name = "Срок кредитования")]

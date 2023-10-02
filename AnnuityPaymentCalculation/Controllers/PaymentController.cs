@@ -18,12 +18,6 @@ namespace AnnuityPaymentCalculation.Controllers
             _getResult = getResult;
         }
 
-        public IActionResult Index()
-        {
-            
-            return View();
-        }
-
         public IActionResult CreditData()
         {
             return View();

@@ -4,7 +4,6 @@ namespace AnnuityPaymentCalculation.Models.AnnuityPaymentModel;
 
 public class AnnuityPaymentOutputData : IAnnuityPaymentOutputData
 {
-   
     public DateTime PaymentDate { get; set; }
     public int PaymentNumber { get; set; }
     public decimal PaymentAmount { get; set; }
